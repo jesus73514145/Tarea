@@ -17,10 +17,17 @@ namespace tarea_12082023_jesus_soria.Controllers {
             _logger = logger;
         }
 
+
+   
+      
+        
+        // VISTA DEL FORMULARIO PARA EL ESTUDIANTE
         public IActionResult Form_estudiante() {
             return View();
         }
 
+
+         // METODO POST PARA REGISTRAR EL ESTUDIANTE
         [HttpPost]
         public IActionResult Registrar(Estudiante objEstudiante) {
             string respuesta;
