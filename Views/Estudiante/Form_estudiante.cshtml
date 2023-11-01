@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = "Formulario";
+}
+
+@model tarea_12082023_jesus_soria.Models.Estudiante
+<center><h1>Registrar Estudiante</h1></center>
+<br>
+
+<div class="text-center">
+    <form asp-controller="Estudiante" asp-action="Registrar" method="post" onsubmit="return validarFormulario();">
+        <div class="form-group">
+            <div class="row">
+                <label asp-for="Nombre" class="col-lg-2"></label>
+                <input type="text" asp-for="Nombre" class="col-lg-2">
+            </div> 
+
+            <div class="row">
+                <label asp-for="Apellido_Paterno" class="col-lg-2"></label>
+                <input type="text" asp-for="Apellido_Paterno" class="col-lg-2">
+            </div> 
+
+            <div class="row">
+                <label asp-for="Apellido_Materno" class="col-lg-2"></label>
+                <input type="text" asp-for="Apellido_Materno" class="col-lg-2">
+            </div> 
+
+            <div class="row">
+                <label asp-for="Genero" class="col-lg-2"></label>
+                <select asp-for="Genero" class="col-lg-2" asp-items="Html.GetEnumSelectList<Genero>()">
+                    <option selected = "selected" value="">Seleccione</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label asp-for="Curso" class="col-lg-2"></label>
+                <select asp-for="Curso" class="col-lg-2" asp-items="Html.GetEnumSelectList<Curso>()">
+                    <option selected = "selected" value="">Seleccione</option>
+                </select>
+            </div><br>
+
+            <div class="row">
+                <input type="submit" value="Registrar" class="col-lg-2 custom-button orange-button">
+                <input type="button" value="Limpiar" class="col-lg-2 custom-button red-button" onclick="limpiarCampos()">
+            </div>
+        </div>
+    </form>
+    <div id = "messageDiv">
+        <h1>@ViewData["Message"]</h1>
+    </div>
+</div>
+
+<script>
+    function limpiarCampos() {
+        document.getElementById("Nombre").value = "";
+        document.getElementById("Apellido_Paterno").value = "";
+        document.getElementById("Apellido_Materno").value = "";
+        document.getElementById("Genero").selectedIndex = 0; // Seleccione la primera opción
+        document.getElementById("Curso").selectedIndex = 0; // Seleccione la primera opción
+
+        // Limpiar el ViewData
+        document.getElementById("messageDiv").innerText = "";
+
+        return false; // Necesario para evitar que el formulario se envíe
+    }
+</script>
+
+<script>
+    function validarFormulario() {
+        var generoSeleccionado = document.getElementById("Genero").value;
+        var cursoSeleccionado = document.getElementById("Curso").value;
+        
+        /*if (generoSeleccionado === "" || cursoSeleccionado === "") {
+            alert("Por favor, seleccione una opción válida para Género y Curso.");
+            return false;
+        }*/
+
+        if (generoSeleccionado === "") {
+            alert("Por favor, seleccione una opción válida para Género.");
+            return false;
+        }
+
+        if (cursoSeleccionado === "") {
+            alert("Por favor, seleccione una opción válida para Curso.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<style>
+   .custom-button {
+        margin-right: 10px; /* Agrega un espacio a la derecha de los botones */
+    }
+
+    .orange-button {
+        background-color: orange;
+    }
+
+    .red-button {
+        background-color: white;
+    } 
+    
+</style>
+

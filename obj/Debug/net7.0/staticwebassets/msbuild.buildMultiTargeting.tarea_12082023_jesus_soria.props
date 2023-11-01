@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\tarea_12082023_jesus_soria.props" />
+</Project>
